@@ -13,7 +13,7 @@ export default function Header() {
             height="40"
             src="https://cdn2.downdetector.com/static/uploads/logo/Instagram_Logo_Large.png"
             alt="Instagram logo"
-            className="object-contain bg-blue-200"
+            className="object-contain"
           />
         </div>
 
