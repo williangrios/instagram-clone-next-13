@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 
 interface storyProps {
-  userName: String;
-  img: String;
-  id: Number;
+  userName: string;
+  img: string;
+  id: number;
 }
 
 export default function Story(props: storyProps) {
