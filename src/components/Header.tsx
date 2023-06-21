@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white">
       {/* left */}
-      <div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto ">
+      <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto ">
         <div className="items-center h-24 w-36 hidden lg:inline-grid cursor-pointer border-1 ">
           <Image
             width="300"

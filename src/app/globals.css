@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@layer components{
+    .post-buttons{
+        @apply w-7 h-7 text-black text-lg font-bold hover:scale-125 transition-transform duration-200 cursor-pointer ease-out
+    }
+    
+}
+
