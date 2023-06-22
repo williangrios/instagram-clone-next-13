@@ -6,7 +6,7 @@ interface storyProps {
   userName: string;
   img: string;
   id: number;
-  isUser: false;
+  isUser?: boolean;
 }
 
 export default function Story(props: storyProps) {
