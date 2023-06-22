@@ -4,6 +4,7 @@ import "minifaker/locales/en";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Story from "./Story";
+import { useSession } from "next-auth/react";
 
 function createUser(userName: string, img: string, id: number) {
   return {
@@ -15,6 +16,7 @@ function createUser(userName: string, img: string, id: number) {
 
 export default function Stories() {
   const [storyUsers, setStoryUsers] = useState([createUser("", "", 0)]);
+  const { data: session } = useSession();
   useEffect(() => {
     const storyUsers = minifaker.array(20, (i) =>
       createUser(
@@ -28,8 +30,18 @@ export default function Stories() {
 
   return (
     <div className="flex space-x-2 p-6 bg-white mt-8 border-gray-200 border overflow-x-scroll rounded-sm scrollbar-none">
+      {
+        session && (
+          <Story img={session?.user?.image} userName={session?.user?.name} isUser={true}/>
+        )
+      }
       {storyUsers.map((user) => (
-       <Story key={user.id} userName={user.userName} img={user.img} id={user.id} />
+        <Story
+          key={user.id}
+          userName={user.userName}
+          img={user.img}
+          id={user.id}
+        />
       ))}
     </div>
   );

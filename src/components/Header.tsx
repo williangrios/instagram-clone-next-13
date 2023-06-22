@@ -1,10 +1,17 @@
+"use client";
 import Image from "next/image";
 import { SearchIcon, PlusCircleIcon, PlusIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
+  const {  data: session } = useSession();
+
+  console.log(session);
+  
+
   return (
-    <div className="shadow-sm border-b sticky top-0 bg-white">
+    <div className="shadow-sm border-b sticky top-0 bg-white z-30">
       {/* left */}
       <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto ">
         <div className="items-center h-24 w-36 hidden lg:inline-grid cursor-pointer border-1 ">
@@ -35,11 +42,21 @@ export default function Header() {
             placeholder="Search"
           />
         </div>
-
         <div className="flex justify-center items-center ml-4 space-x-3">
           <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
-          <PlusIcon className="h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
-          <img src="" alt="user image" className="h-10 w-20 rounded-full cursor-pointer" />
+          {session ? (
+            <>
+              <PlusIcon className="h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
+              <img
+                src={session.user?.image ? session.user?.image : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
+                alt="user image"
+                className="h-10 w-10 rounded-full cursor-pointer hover:scale-110 transition-transform ease-out duration-200"
+                onClick={() => signOut()}
+              />
+            </>
+          ) : (
+            <button className="text-blue-500 font-semibold hover:text-blue-700" onClick={() => signIn()}>Sign in</button>
+          )}
         </div>
       </div>
 
