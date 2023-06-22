@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
-import { SearchIcon, PlusCircleIcon, PlusIcon } from "@heroicons/react/outline";
+import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
+import {useRecoilState} from 'recoil';
+import { modalState } from "../../atom/modalAtom";
 
 export default function Header() {
   const {  data: session } = useSession();
+  const [open, setOpen] = useRecoilState(modalState);
 
   console.log(session);
   
@@ -46,7 +49,7 @@ export default function Header() {
           <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
           {session ? (
             <>
-              <PlusIcon className="h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
+              <PlusCircleIcon className="h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" onClick={() => setOpen(true)} />
               <img
                 src={session.user?.image ? session.user?.image : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"}
                 alt="user image"
