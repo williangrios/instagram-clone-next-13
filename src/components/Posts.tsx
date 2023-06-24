@@ -25,8 +25,6 @@ export default function Posts() {
     const unsubscribe = onSnapshot( query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot: any) => {
         setPost(snapshot.docs.map((post: any) => createPost(post.id, post.data().userName, post.data().profileImg, post.data().image, post.data().caption)))
     })
-  
-    
   }, [])
   
   return (

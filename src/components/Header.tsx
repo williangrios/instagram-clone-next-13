@@ -5,13 +5,12 @@ import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
 import {useRecoilState} from 'recoil';
 import { modalState } from "../../atom/modalAtom";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+  const router = useRouter();
   const {  data: session } = useSession();
   const [open, setOpen] = useRecoilState(modalState);
-
-  console.log(session);
-  
 
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white z-30">
@@ -24,6 +23,7 @@ export default function Header() {
             src="https://cdn2.downdetector.com/static/uploads/logo/Instagram_Logo_Large.png"
             alt="Instagram logo"
             className="object-contain"
+            onClick={() => router.push('/')}
           />
         </div>
 
@@ -34,6 +34,7 @@ export default function Header() {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/800px-Instagram-Icon.png"
             alt="Instagram logo"
             className="object-contain"
+            onClick={() => router.push('/')}
           />
         </div>
 
@@ -46,7 +47,7 @@ export default function Header() {
           />
         </div>
         <div className="flex justify-center items-center ml-4 space-x-3">
-          <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
+          <HomeIcon onClick={() => router.push('/')} className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" />
           {session ? (
             <>
               <PlusCircleIcon className="h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out" onClick={() => setOpen(true)} />
