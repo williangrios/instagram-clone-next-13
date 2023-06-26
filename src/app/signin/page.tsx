@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Header from "@/components/Header";
 import { getProviders, signIn } from "next-auth/react";
 
@@ -19,25 +19,28 @@ export default async function Auth() {
           />
         </div>
         <div className="flex flex-col items-center w-full md:w-1/2 justify-center">
-          {providers && Object.values(providers).map((provider, i) => (
-            <div key={i} className="flex flex-col justify-center items-center" >
-              <img
-                width="150px"
-                
-                src="https://melomoreiraadvogados.com.br/wp-content/uploads/2020/03/Como-copiar-o-link-de-um-perfil-ou-postagem-do-Instagram-Instagram-Melo-Moreira-Advogados-Especialistas-em-Direito-Digital-e-Internet-870x843.png"
-                alt="instagram"
-              />
-              <p className="text-sm  italic mt-10">
-                This app was created by Willian
-              </p>
-              <button
-                className="bg-red-400 cursor-pointer px-3 py-4 text-white font-bold rounded-lg mt-10 hover:brightness-110"
-                onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+          {providers &&
+            Object.values(providers).map((provider, i) => (
+              <div
+                key={i}
+                className="flex flex-col justify-center items-center"
               >
-                Sign in with {provider.name}
-              </button>
-            </div>
-          ))}
+                <img
+                  width="150px"
+                  src="https://melomoreiraadvogados.com.br/wp-content/uploads/2020/03/Como-copiar-o-link-de-um-perfil-ou-postagem-do-Instagram-Instagram-Melo-Moreira-Advogados-Especialistas-em-Direito-Digital-e-Internet-870x843.png"
+                  alt="instagram"
+                />
+                <p className="text-sm  italic mt-10">
+                  This app was created by Willian
+                </p>
+                <button
+                  className="bg-red-400 cursor-pointer px-3 py-4 text-white font-bold rounded-lg mt-10 hover:brightness-110"
+                  onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+                >
+                  Sign in with {provider.name}
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </div>

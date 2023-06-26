@@ -20,13 +20,26 @@ export default function Posts() {
     };
   }
 
-  const [posts, setPost] = useState([createPost(0, '', '', '', '')]);
+  const [posts, setPost] = useState([createPost(0, "", "", "", "")]);
   useEffect(() => {
-    const unsubscribe = onSnapshot( query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot: any) => {
-        setPost(snapshot.docs.map((post: any) => createPost(post.id, post.data().userName, post.data().profileImg, post.data().image, post.data().caption)))
-    })
-  }, [])
-  
+    const unsubscribe = onSnapshot(
+      query(collection(db, "posts"), orderBy("timestamp", "desc")),
+      (snapshot: any) => {
+        setPost(
+          snapshot.docs.map((post: any) =>
+            createPost(
+              post.id,
+              post.data().userName,
+              post.data().profileImg,
+              post.data().image,
+              post.data().caption
+            )
+          )
+        );
+      }
+    );
+  }, []);
+
   return (
     <div>
       {posts.map((post) => (

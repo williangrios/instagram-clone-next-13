@@ -6,14 +6,13 @@ import {
   BookmarkIcon,
   EmojiHappyIcon,
 } from "@heroicons/react/outline";
-import {
-  HeartIcon as HeartIconFilled,
-} from "@heroicons/react/solid";
+import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
+  doc,
   onSnapshot,
   orderBy,
   query,
@@ -82,10 +81,6 @@ export default function Post(props: PostProps) {
     );
   }, [props.id]);
 
-  // async function likePost(){
-  //   await setDoc(doc(db, 'posts', id, 'likes', session?.user.uid))
-  // }
-
   async function sendComment(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     const commentToSend = comment.trim();
@@ -124,14 +119,17 @@ export default function Post(props: PostProps) {
           {/* post buttons */}
           <div className="px-6 py-4 flex items-center justify-between">
             <div className="flex space-x-2">
-              {
-                hasLiked ? (
-                  <HeartIconFilled onClick={likePost} className="text-red-500 post-buttons" />
-                )
-                :(
-                  <HeartIcon onClick={likePost} className="post-buttons" />
-                )
-              }
+              {hasLiked ? (
+                <HeartIconFilled
+                  onClick={() => console.log("like")}
+                  className="text-red-500 post-buttons"
+                />
+              ) : (
+                <HeartIcon
+                  onClick={() => console.log("like")}
+                  className="post-buttons"
+                />
+              )}
               <ChatIcon className="post-buttons" />
             </div>
             <BookmarkIcon className="post-buttons" />

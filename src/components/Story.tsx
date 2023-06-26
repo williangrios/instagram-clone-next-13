@@ -20,11 +20,9 @@ export default function Story(props: storyProps) {
         alt="user photo"
         className="h-14 w-14 p-[1.5px] rounded-full border-red-500 border-2 group-hover:scale-110 transition-transform ease-out duration-200"
       />
-      {
-        props.isUser && (
-          <PlusIcon className="h-6 absolute top-4 left-4 text-white group-hover:scale-110 transition-transform ease-out duration-200" />
-        )
-      }
+      {props.isUser && (
+        <PlusIcon className="h-6 absolute top-4 left-4 text-white group-hover:scale-110 transition-transform ease-out duration-200" />
+      )}
       <p className="text-xs w-14 truncate">{props.userName}</p>
     </div>
   );

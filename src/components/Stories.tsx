@@ -30,11 +30,14 @@ export default function Stories() {
 
   return (
     <div className="flex space-x-2 p-6 bg-white mt-8 border-gray-200 border overflow-x-scroll rounded-sm scrollbar-none">
-      {
-        session && (
-          <Story id={-1} img={session?.user?.image || ''} userName={session?.user?.name || ''} isUser={true}/>
-        )
-      }
+      {session && (
+        <Story
+          id={-1}
+          img={session?.user?.image || ""}
+          userName={session?.user?.name || ""}
+          isUser={true}
+        />
+      )}
       {storyUsers.map((user) => (
         <Story
           key={user.id}
