@@ -1,9 +1,19 @@
 "use client";
 import Header from "@/components/Header";
-import { getProviders, signIn } from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers";
+import { ClientSafeProvider, LiteralUnion, getProviders, signIn } from "next-auth/react";
+import { useEffect, useState } from "react";
 
-export default async function Auth() {
-  const providers = await getProviders();
+export default function Auth() {
+  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null)
+  useEffect(() => {
+    async function getProv(){
+      const resProviders = await getProviders();
+      setProviders(resProviders)
+    }
+    getProv();
+    
+  }, [])
 
   return (
     <div>
