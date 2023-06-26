@@ -17,8 +17,8 @@ interface CustomUser extends DefaultSession {
 const handler = NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
     }),
   ],
   secret: process.env.SECRET,
@@ -42,7 +42,7 @@ const handler = NextAuth({
           name: session.user?.name,
           image: session.user?.image,
           uid: token.sub,
-        },
+        }, 
         expires: session.expires,
       };
 
